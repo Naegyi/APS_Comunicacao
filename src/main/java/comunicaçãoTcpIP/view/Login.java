@@ -1,10 +1,13 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.view;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import comunicaçãoTcpIP.database.DAO;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -80,16 +83,27 @@ public class Login extends JFrame {
 		JButton btnLogar = new JButton("Logar");
 		btnLogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DAO dao = new DAO();
+				String usuario = textFUsuario.getText();
+		        String senha = passwordField.getText();
+				
 				if (textFUsuario.getText()!=null &&
 						!textFUsuario.getText().isEmpty() &&
 						passwordField.getText()!=null &&
 						!passwordField.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(btnLogar, "Validação Completa");
 					
-					TelaPrincipal framePrincipal = new TelaPrincipal();
-					framePrincipal.setVisible(true);
+					boolean sucesso = dao.autenticar(usuario, senha);
 					
-					dispose();
+					if (sucesso) {
+						JOptionPane.showMessageDialog(btnLogar, "Bem Vindo " + usuario);
+						TelaPrincipal framePrincipal = new TelaPrincipal();
+						framePrincipal.setLocationRelativeTo(null);
+						framePrincipal.setVisible(true);
+						dispose();
+					} else{
+						JOptionPane.showMessageDialog(btnLogar, "Erro ao Logar. O usuário/senha esta incorreto ou não existe.", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
 				} else {
 					JOptionPane.showMessageDialog(btnLogar, "Informações Invalidas", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
