@@ -1,4 +1,4 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.view;
 
 import java.awt.EventQueue;
 
