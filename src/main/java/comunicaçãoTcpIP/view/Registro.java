@@ -53,21 +53,24 @@ public class Registro extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel jpRegistro = new JPanel();
-		jpRegistro.setBackground(new Color(192, 192, 192));
+		jpRegistro.setBackground(new Color(32, 32, 32));
 		jpRegistro.setBounds(10, 10, 416, 243);
 		contentPane.add(jpRegistro);
 		jpRegistro.setLayout(null);
 		
-		JLabel lblRegistro = new JLabel("Registrar Usuario");
-		lblRegistro.setBounds(162, 27, 103, 12);
+		JLabel lblRegistro = new JLabel("REGISTRAR USUÁRIO");
+		lblRegistro.setBounds(122, 27, 203, 12);
+		lblRegistro.setForeground(Color.GREEN);
 		jpRegistro.add(lblRegistro);
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
+		JLabel lblUsuario = new JLabel("Usuário:");
 		lblUsuario.setBounds(79, 69, 96, 12);
+		lblUsuario.setForeground(Color.GREEN);
 		jpRegistro.add(lblUsuario);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Senha:");
 		lblNewLabel_1_1.setBounds(79, 111, 44, 12);
+		lblNewLabel_1_1.setForeground(Color.GREEN);
 		jpRegistro.add(lblNewLabel_1_1);
 		
 		textFUsuario = new JTextField();
@@ -80,7 +83,8 @@ public class Registro extends JFrame {
 		textFSenha.setBounds(79, 124, 234, 18);
 		jpRegistro.add(textFSenha);
 		
-		JButton btnRegistrar = new JButton("Registrar");
+		JButton btnRegistrar = new JButton("REGISTRAR");
+		btnRegistrar.setBackground(Color.green);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DAO dao = new DAO();
@@ -109,7 +113,7 @@ public class Registro extends JFrame {
 				}
 			}
 		});
-		btnRegistrar.setBounds(170, 185, 84, 20);
+		btnRegistrar.setBounds(150, 185, 100, 20);
 		jpRegistro.add(btnRegistrar);
 
 	}
