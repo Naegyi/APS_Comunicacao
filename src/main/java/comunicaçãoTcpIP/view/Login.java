@@ -54,24 +54,21 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel jpLogin = new JPanel();
-		jpLogin.setBackground(new Color(32, 32, 32));
+		jpLogin.setBackground(new Color(192, 192, 192));
 		jpLogin.setBounds(10, 10, 441, 270);
 		contentPane.add(jpLogin);
 		jpLogin.setLayout(null);
 		
-		JLabel lblLogin = new JLabel("LOGIN");
+		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setBounds(207, 29, 44, 12);
-		lblLogin.setForeground(Color.GREEN);
 		jpLogin.add(lblLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setBounds(114, 68, 60, 12);
-		lblUsuario.setForeground(Color.GREEN);
 		jpLogin.add(lblUsuario);
 		
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(114, 105, 44, 12);
-		lblSenha.setForeground(Color.GREEN);
 		jpLogin.add(lblSenha);
 		
 		textFUsuario = new JTextField();
@@ -83,8 +80,7 @@ public class Login extends JFrame {
 		passwordField.setBounds(169, 102, 157, 18);
 		jpLogin.add(passwordField);
 		
-		JButton btnLogar = new JButton("LOGAR");
-		btnLogar.setBackground(Color.GREEN);
+		JButton btnLogar = new JButton("Logar");
 		btnLogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -116,8 +112,7 @@ public class Login extends JFrame {
 		btnLogar.setBounds(242, 147, 84, 20);
 		jpLogin.add(btnLogar);
 		
-		JButton btnRegistrar = new JButton("REGISTRAR");
-		btnRegistrar.setBackground(Color.GREEN);
+		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Cria a instância da tela de registro
@@ -128,7 +123,7 @@ public class Login extends JFrame {
 			    dispose();
 			}
 		});
-		btnRegistrar.setBounds(104, 147, 100, 20);
+		btnRegistrar.setBounds(114, 147, 84, 20);
 		jpLogin.add(btnRegistrar);
 
 	}
