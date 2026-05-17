@@ -7,6 +7,7 @@ public class Conexao {
 	
 	private static final String url = "jdbc:sqlite:skynet.db";
 	
+	
 	public static Connection conectar() {
 		try{
 			Connection conexao = DriverManager.getConnection(url);
