@@ -3,35 +3,51 @@ package comunicaçãoTcpIP.rede;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ConcurrentHashMap;
 
 import comunicaçãoTcpIP.database.DataBaseConfig;
 
+/**
+ * Servidor TCP do chat.
+ * Escuta conexões na porta definida, aceita clientes e cria uma thread
+ * (TratarCliente) para cuidar da comunicação com cada um.
+ * Mantém um mapa de clientes conectados para envio de mensagens direcionadas.
+ */
 public class Servidor {
 
-	public static void main(String[] args) throws IOException {
-		
-		DataBaseConfig.inicializarBanco();
-        //1 - Definir o serverSocket (abrir porta de conexão)
-        ServerSocket serverSocket = new ServerSocket(54321);
-        System.out.println("A porta 54321 foi aberta!");
-        System.out.println("Servidor esperando receber mensagem de cliente...");
-        
-        while (true) {
-        	
-        	// 1. O Servidor para aqui e espera alguém conectar
-            Socket socket = serverSocket.accept();
-            
-            // 2. Assim que conecta, pegamos o IP para avisar no console do servidor
-            String ipCliente = socket.getInetAddress().getHostAddress();
-            System.out.println("Novo usuário conectado! IP: " + ipCliente);
-            
-            // 3. Criamos o "atendente" (TratarCliente)
-            TratarCliente cuidador = new TratarCliente(socket);
-            
-            // 4. USAMOS .start() para que ele rode em paralelo!
-            cuidador.start();
-        	
+    // Constantes de configuração
+    private static final int PORTA_PADRAO = 54321;
+    private static final String MSG_SERVIDOR_INICIADO = "Servidor rodando na porta %d...";
+    private static final String MSG_NOVA_CONEXAO = "Nova conexão de: %s";
+
+    /**
+     * Mapa global com todos os clientes ativos.
+     * A chave é o nome do usuário (String) e o valor é a thread que gerencia a conexão.
+     * Usamos ConcurrentHashMap para acesso seguro entre múltiplas threads.
+     */
+    public static final ConcurrentHashMap<String, TratarCliente> clientesConectados = new ConcurrentHashMap<>();
+
+    public static void main(String[] args) {
+        // Inicializa o banco de dados (cria tabelas se não existirem)
+        DataBaseConfig.inicializarBanco();
+
+        // Inicia o socket do servidor e aceita conexões infinitamente
+        try (ServerSocket serverSocket = new ServerSocket(PORTA_PADRAO)) {
+            System.out.printf(MSG_SERVIDOR_INICIADO, PORTA_PADRAO);
+
+            // Loop principal: aceita novos clientes para sempre
+            while (true) {
+                Socket socket = serverSocket.accept();  // bloqueia até nova conexão
+                String ipCliente = socket.getInetAddress().getHostAddress();
+                System.out.printf(MSG_NOVA_CONEXAO, ipCliente);
+
+                // Cria uma nova thread para atender este cliente
+                TratarCliente clienteThread = new TratarCliente(socket);
+                clienteThread.start();   // inicia a execução paralela
+            }
+        } catch (IOException e) {
+            System.err.println("Erro crítico no servidor: " + e.getMessage());
+            e.printStackTrace();
         }
-        
     }
 }
