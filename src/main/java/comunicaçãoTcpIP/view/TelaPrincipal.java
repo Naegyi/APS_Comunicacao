@@ -1,4 +1,4 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.view;
 
 import java.awt.EventQueue;
 
@@ -40,7 +40,7 @@ public class TelaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 807, 615);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(192, 192, 192));
+		contentPane.setBackground(new Color(30, 30, 30));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -51,15 +51,22 @@ public class TelaPrincipal extends JFrame {
 		scrollPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 10, 773, 50);
+		setTitle("APS CHAT");
+		panel.setBounds(10, 10, 350, 50);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		panel.setBackground(new Color(30, 30, 30));
+
 		
 		JButton btnNewButton = new JButton("Nova Conversa");
 		btnNewButton.setBounds(10, 10, 140, 30);
 		panel.add(btnNewButton);
+		btnNewButton.setBackground(new Color(10, 90, 40));
+		btnNewButton.setForeground(Color.WHITE);
 		
 		JButton btnNovoGrupo = new JButton("Novo Grupo");
+		btnNovoGrupo.setBackground(new Color(10 , 90, 40));
+		btnNovoGrupo.setForeground(Color.WHITE);
 		btnNovoGrupo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

@@ -1,6 +1,9 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.rede;
 
 import java.net.Socket;
+
+import comunicaçãoTcpIP.modelos.Mensagem;
+
 import java.io.ObjectInputStream;
 
 public class TratarCliente extends Thread {

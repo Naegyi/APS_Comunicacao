@@ -1,4 +1,4 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.rede;
 
 
 import java.io.*;
@@ -12,11 +12,7 @@ public class Cliente {
          Socket socket = new Socket("127.0.0.1", 54321);
          ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
          
-         System.out.print("Bem-vindo! Digite seu nome de usuário para entrar: ");
-         String nomeUsuario = scan.nextLine();
 
-         System.out.print("Digite sua senha: ");
-         String senhaUsuario = scan.nextLine();
          
          
      }

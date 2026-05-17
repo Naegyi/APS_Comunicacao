@@ -1,4 +1,4 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.modelos;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -1,10 +1,13 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.view;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import comunicaçãoTcpIP.database.DAO;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,21 +54,24 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel jpLogin = new JPanel();
-		jpLogin.setBackground(new Color(192, 192, 192));
+		jpLogin.setBackground(new Color(32, 32, 32));
 		jpLogin.setBounds(10, 10, 441, 270);
 		contentPane.add(jpLogin);
 		jpLogin.setLayout(null);
 		
-		JLabel lblLogin = new JLabel("Login");
+		JLabel lblLogin = new JLabel("LOGIN");
 		lblLogin.setBounds(207, 29, 44, 12);
+		lblLogin.setForeground(Color.GREEN);
 		jpLogin.add(lblLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setBounds(114, 68, 60, 12);
+		lblUsuario.setForeground(Color.GREEN);
 		jpLogin.add(lblUsuario);
 		
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(114, 105, 44, 12);
+		lblSenha.setForeground(Color.GREEN);
 		jpLogin.add(lblSenha);
 		
 		textFUsuario = new JTextField();
@@ -77,19 +83,31 @@ public class Login extends JFrame {
 		passwordField.setBounds(169, 102, 157, 18);
 		jpLogin.add(passwordField);
 		
-		JButton btnLogar = new JButton("Logar");
+		JButton btnLogar = new JButton("LOGAR");
+		btnLogar.setBackground(Color.GREEN);
 		btnLogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DAO dao = new DAO();
+				String usuario = textFUsuario.getText();
+		        String senha = passwordField.getText();
+				
 				if (textFUsuario.getText()!=null &&
 						!textFUsuario.getText().isEmpty() &&
 						passwordField.getText()!=null &&
 						!passwordField.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(btnLogar, "Validação Completa");
 					
-					TelaPrincipal framePrincipal = new TelaPrincipal();
-					framePrincipal.setVisible(true);
+					boolean sucesso = dao.autenticar(usuario, senha);
 					
-					dispose();
+					if (sucesso) {
+						JOptionPane.showMessageDialog(btnLogar, "Bem Vindo " + usuario);
+						TelaPrincipal framePrincipal = new TelaPrincipal();
+						framePrincipal.setLocationRelativeTo(null);
+						framePrincipal.setVisible(true);
+						dispose();
+					} else{
+						JOptionPane.showMessageDialog(btnLogar, "Erro ao Logar. O usuário/senha esta incorreto ou não existe.", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
 				} else {
 					JOptionPane.showMessageDialog(btnLogar, "Informações Invalidas", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
@@ -98,7 +116,8 @@ public class Login extends JFrame {
 		btnLogar.setBounds(242, 147, 84, 20);
 		jpLogin.add(btnLogar);
 		
-		JButton btnRegistrar = new JButton("Registrar");
+		JButton btnRegistrar = new JButton("REGISTRAR");
+		btnRegistrar.setBackground(Color.GREEN);
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Cria a instância da tela de registro
@@ -109,7 +128,7 @@ public class Login extends JFrame {
 			    dispose();
 			}
 		});
-		btnRegistrar.setBounds(114, 147, 84, 20);
+		btnRegistrar.setBounds(104, 147, 100, 20);
 		jpLogin.add(btnRegistrar);
 
 	}

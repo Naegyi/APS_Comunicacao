@@ -1,12 +1,16 @@
-package comunicaçãoTcpIP;
+package comunicaçãoTcpIP.rede;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import comunicaçãoTcpIP.database.DataBaseConfig;
+
 public class Servidor {
 
 	public static void main(String[] args) throws IOException {
+		
+		DataBaseConfig.inicializarBanco();
         //1 - Definir o serverSocket (abrir porta de conexão)
         ServerSocket serverSocket = new ServerSocket(54321);
         System.out.println("A porta 54321 foi aberta!");
