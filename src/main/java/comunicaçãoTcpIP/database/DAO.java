@@ -19,6 +19,7 @@ public class DAO {
             pstmt.executeUpdate();
             System.out.println("Usuário registrado: " + nome);
             return true;
+            
         } catch (SQLException e) {
             System.err.println("Erro ao registrar: " + e.getMessage());
             return false;

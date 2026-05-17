@@ -118,7 +118,7 @@ public class TelaPrincipal extends JFrame {
         panel.setBackground(new Color(30, 30, 30));
         contentPane.add(panel);
 
-        // Botão para iniciar conversa privada
+        // Botão para iniciar conversa privada.
         JButton btnNovoChat = new JButton("Nova Conversa");
         btnNovoChat.setBounds(10, 10, 140, 30);
         btnNovoChat.setBackground(new Color(10, 90, 40));

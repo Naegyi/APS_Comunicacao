@@ -23,6 +23,7 @@ import comunicaçãoTcpIP.rede.Criptografia;
  * Gerencia exibição de mensagens, envio de texto/arquivo, recepção em tempo real
  * e persistência local (histórico) usando o DAO.
  */
+
 public class TelaChat extends JFrame {
     private static final long serialVersionUID = 1L;
 
